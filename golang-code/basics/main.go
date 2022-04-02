@@ -2,8 +2,19 @@ package main
 
 import (
   "fmt"
+  "math"
   "strings"
+  "basics/intro/loops"
+  "basics/intro/dictionary"
 )
+
+
+type Circle struct {
+  x float64
+  y float64
+  r float64
+}
+
 
 func main() {
   fmt.Println("Hello World")
@@ -11,8 +22,24 @@ func main() {
   fmt.Println(name)
   fmt.Println(name[2])
   stringToArray()
-  dictionary()
+
+  // Testing Package
+  loops.ForLoops()
+  dictionary.MapOps()
+
+  // Test Mixed Ops
+  fmt.Println(mixedOps("Peter",40))
+
+  // Test Struct
+  c := Circle{4,5,6}
+  fmt.Println(circleArea(&c))
 }
+
+
+func circleArea(t *Circle) float64 {
+  return math.Pi * t.r*t.r
+}
+
 
 
 // Change Strings to Array
@@ -32,11 +59,15 @@ func stringToArray() {
    fmt.Println(strings.Fields(states[1][1:3]))
 }
 
-// Test Dictiionary
-func dictionary() {
-   house := make(map[string]int)
-   house["Doris"] = 1
-   fmt.Println(house)
-   house["Doris"] = 2
-   fmt.Println(house)
+
+
+
+// Take mixed arguments return string
+func mixedOps(nm string, age int) string {
+  if age > 20 {
+    val := nm+" Over Qualified"
+    return val
+  } else {
+     return nm+" Under Qualified"
+  }
 }
