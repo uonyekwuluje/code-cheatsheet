@@ -3,9 +3,9 @@ package main
 import (
   "fmt"
   "math"
-  "strings"
   "basics/intro/loops"
   "basics/intro/dictionary"
+  "basics/intro/slices"
 )
 
 
@@ -21,7 +21,9 @@ func main() {
   name := [5]string{"Tony","Paul","Rosemary","Dupui","Ratsinger"}
   fmt.Println(name)
   fmt.Println(name[2])
-  stringToArray()
+  // Slices and Arrays
+  slices.StringToArray()
+  slices.SliceOps()
 
   // Testing Package
   loops.ForLoops()
@@ -38,25 +40,6 @@ func main() {
 
 func circleArea(t *Circle) float64 {
   return math.Pi * t.r*t.r
-}
-
-
-
-// Change Strings to Array
-func stringToArray() {
-   states := [3]string{"Montanna","Massachusetts","Idaho"}
-   fmt.Println(states)
-
-   str_char := states[2]
-   chars := []rune(str_char)
-   fmt.Println(chars)
-   for i:=0; i<len(chars); i++ {
-     fmt.Print(string(chars[i]))
-   }
-   fmt.Println("")
-
-   fmt.Println(strings.Fields(states[1]))
-   fmt.Println(strings.Fields(states[1][1:3]))
 }
 
 
