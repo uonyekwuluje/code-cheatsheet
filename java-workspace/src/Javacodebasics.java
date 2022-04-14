@@ -1,4 +1,3 @@
-
 public class Javacodebasics {
 
 	public static void main(String[] args) {
@@ -9,6 +8,14 @@ public class Javacodebasics {
 		edwin.lastName = "Ubuane";
 		edwin.age = 34;
 		System.out.println("Full Name = "+edwin.getFullName());
+
+		// Create new object for inouts  
+	    Basicinput jinput = new Basicinput();
+	    jinput.heading();
+	    
+	    // String processing
+	    Stringprocess jstr = new Stringprocess();
+	    jstr.introArray();
 	}
 
 	static class Student {
