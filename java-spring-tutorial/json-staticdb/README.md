@@ -13,4 +13,5 @@ Run App
 ```
 http://localhost:8080/hello
 http://localhost:8080/hello?name=Amy
+curl localhost:8080/get
 ```
