@@ -1,0 +1,2 @@
+https://www.baeldung.com/spring-boot-kafka-ssl
+https://stackoverflow.com/questions/51200107/spring-kafka-ssl-setup-in-spring-boot-application-yml
