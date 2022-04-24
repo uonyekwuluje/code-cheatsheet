@@ -1,5 +1,8 @@
+import Genimp;
+
 public class Genericp {
     public static void main(String[] args){
-        System.out.println("Hello"); 
+        Genimp items = new Genimp();
+        items.pString();
     }
 }
