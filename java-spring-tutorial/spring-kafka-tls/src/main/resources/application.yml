@@ -3,9 +3,9 @@ spring:
       bootstrap-servers: dev-kafka-server.home:9093
       ssl:
          protocol: "SSL"
-         trust-store-location: "file:///home/ucheonyekwuluje/dataDrive/Dev_Repositories_Sanboxes/UchePersonalGitHubProjects/code-cheatsheet/kafka.client.truststore.jks"
+         trust-store-location: "file:///home/kafka.client.truststore.jks"
          trust-store-password: trustpassword
-         key-store-location: "file:///home/ucheonyekwuluje/dataDrive/Dev_Repositories_Sanboxes/UchePersonalGitHubProjects/code-cheatsheet/kafka.client.keystore.jks"
+         key-store-location: "file:///home/kafka.client.keystore.jks"
          key-store-password: clientpassword
       properties:
          #Server host name verification is disabled by setting ssl.endpoint.identification.algorithm to an empty string
