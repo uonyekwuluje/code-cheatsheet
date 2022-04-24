@@ -1,0 +1,16 @@
+version: '3.9'
+
+services:
+  buildevenv:
+    build:
+       context: .
+       dockerfile: devev-Dockerfile
+    image: dev-environment:latest
+    working_dir: /code-labs 
+    volumes:
+    - ../:/code-labs
+
+#  devenv:
+#    image: dev-environment
+#    depends_on:
+#    - buildevenv
