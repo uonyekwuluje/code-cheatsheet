@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 def listOps():
   states = ["Massachusetts","NewYork","Califonia"]
   print(states)
@@ -12,3 +10,5 @@ def listOps():
   print("The list is of lenght {}".format(len(states)))
   states.insert(0, "Idaho")
   print(states)
+
+

@@ -1,2 +1,8 @@
 #!/usr/bin/env python3
-print("New")
+
+from basics import p_list
+
+
+if __name__ == '__main__':
+    p_list.listOps()
+   
