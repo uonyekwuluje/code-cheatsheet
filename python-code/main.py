@@ -15,3 +15,9 @@ if __name__ == '__main__':
     # Write your code here
     grav_force = (G * M * m)/ r ** 2
     print(grav_force)
+
+    x = 5  # type of x is an integer
+    print(type(x))
+
+    x = "Educative"  # type of x is now string
+    print(type(x))
