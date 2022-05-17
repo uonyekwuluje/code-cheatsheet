@@ -1,4 +1,0 @@
-INDEX VERSION 1.131+/home/ucheonyekwuluje/dataDrive/Dev_Repositories_Sanboxes/UchePersonalGitHubProjects/code-cheatsheet/java-code/concepts/.metadata/.plugins/org.eclipse.jdt.core
-372938726.index
-1865797976.index
-3501086356.index
