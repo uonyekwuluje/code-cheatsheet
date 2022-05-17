@@ -2,12 +2,18 @@ package com.inventory.prdt.controller;
 
 import com.inventory.prdt.model.ProductModel;
 import com.inventory.prdt.repository.ProductRepository;
+import com.inventory.prdt.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
+import javax.validation.Valid;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,43 +24,44 @@ public class ProductController {
     @Autowired
     ProductRepository productRepo;
 
-    @RequestMapping("/items")
-    @ResponseBody
-    public ResponseEntity<List<ProductModel>> getAllProductModels(){
-        List<ProductModel> items =  productRepo.findAll();
-        return new ResponseEntity<List<ProductModel>>(items, HttpStatus.OK);
+    @GetMapping("/products")
+    public List<ProductModel> getAllProduct(){
+        return productRepo.findAll();
     }
 
-    @GetMapping("/item/{itemId}")
-    @ResponseBody
-    public ResponseEntity<ProductModel> getProductModel(@PathVariable Long itemId){
-        Optional<ProductModel> item = productRepo.findById(itemId);
-        return new ResponseEntity<ProductModel>(item.get(), HttpStatus.OK);
+    @GetMapping("/product/{id}")
+    public ResponseEntity<ProductModel> getProductById(@PathVariable(value = "id") Long productId)
+	throws ResourceNotFoundException  {
+        ProductModel productModel = productRepo.findById(productId)
+	    .orElseThrow(() -> new ResourceNotFoundException("Product not found for this id :: " + productId));
+        return ResponseEntity.ok().body(productModel);
     }
 
-    @PostMapping(value = "/add",consumes = {"application/json"},produces = {"application/json"})
-    @ResponseBody
-    public ResponseEntity<ProductModel> addProductModel(@RequestBody ProductModel item, UriComponentsBuilder builder){
-        productRepo.save(item);
-        HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(builder.path("/addProductModel/{id}").buildAndExpand(item.getId()).toUri());
-        return new ResponseEntity<ProductModel>(headers, HttpStatus.CREATED);
+    @PostMapping("/product")
+    public ProductModel addProduct(@Valid @RequestBody ProductModel productModel){
+        return productRepo.save(productModel);
     }
 
-    @PutMapping("/update")
-    @ResponseBody
-    public ResponseEntity<ProductModel> updateProductModel(@RequestBody ProductModel item){
-        if(item != null){
-            productRepo.save(item);
-        }
-        return new ResponseEntity<ProductModel>(item, HttpStatus.OK);
+    @PutMapping("/product/{id}")
+    public ResponseEntity<ProductModel> updateProduct(@PathVariable(value = "id") Long productId,
+	@Valid @RequestBody ProductModel productDetails) throws ResourceNotFoundException {
+	ProductModel productModel = productRepo.findById(productId)
+			.orElseThrow(() -> new ResourceNotFoundException("Product not found for this id :: " + productId));
+	productModel.setProductName(productDetails.getProductName());
+	productModel.setProductDescription(productDetails.getProductDescription());
+	productModel.setProductQuantity(productDetails.getProductQuantity());
+	final ProductModel updatedProduct = productRepo.save(productModel);
+	return ResponseEntity.ok(updatedProduct);
     }
 
-    @DeleteMapping("/delete/{id}")
-    @ResponseBody
-    public ResponseEntity<Void> deleteProductModel(@PathVariable Long id){
-        Optional<ProductModel> item = productRepo.findById(id);
-        productRepo.delete(item.get());
-        return new ResponseEntity<Void>(HttpStatus.ACCEPTED);
+    @DeleteMapping("/product/{id}")
+    public Map<String, Boolean> deleteProduct(@PathVariable(value = "id") Long productId)
+		throws ResourceNotFoundException {
+	ProductModel productModel = productRepo.findById(productId)
+			.orElseThrow(() -> new ResourceNotFoundException("Product not found for this id :: " + productId));
+	productRepo.delete(productModel);
+	Map<String, Boolean> response = new HashMap<>();
+	response.put("deleted", Boolean.TRUE);
+	return response;
     }
 }

@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name = "products_table")
 public class ProductModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     @Column(name="products_name")
     private String productName;
@@ -27,16 +27,28 @@ public class ProductModel {
     public long getId() {
         return id;
     }
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getProductName() {
         return productName;
+    }
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
     public String getProductDescription() {
         return productDescription;
     }
+    public void setProductDescription(String productDescription) {
+        this.productDescription = productDescription;
+    }
 
     public int getProductQuantity() {
         return productQuantity;
+    }
+    public void setProductQuantity(int productQuantity) {
+        this.productQuantity = productQuantity;
     }
 }

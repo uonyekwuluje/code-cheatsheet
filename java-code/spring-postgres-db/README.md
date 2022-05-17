@@ -50,3 +50,40 @@ Test Arguments
 ```
 curl http://localhost:8080/hello?name=Peter
 ```
+Get Products
+```
+curl http://localhost:8080/api/v1/products
+```
+Get Specific Product
+```
+curl http://localhost:8080/api/v1/product/1
+```
+Delete Product
+```
+curl -X DELETE http://localhost:8080/api/v1/product/1
+```
+Add Products
+```
+curl -d "@data.json" \
+-H 'Content-Type: application/json' \
+-X POST  http://localhost:8080/api/v1/product
+>>
+{
+  "productName": "Honda Accord",
+  "productDescription": "Mid Size Honda Sedan",
+  "productQuantity": 30
+}
+```
+
+Update Products
+```
+curl -d "@data.json" \
+-H 'Content-Type: application/json' \
+-X PUT  http://localhost:8080/api/v1/product/1
+>>
+{
+  "productName": "Honda Accord LX",
+  "productDescription": "Mid Size Honda Sedan Prime",
+  "productQuantity": 30
+}
+```
