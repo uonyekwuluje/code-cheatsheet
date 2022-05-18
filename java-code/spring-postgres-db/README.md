@@ -87,3 +87,10 @@ curl -d "@data.json" \
   "productQuantity": 30
 }
 ```
+
+
+## Build Image
+Run command below to create docker image
+```
+make package DTAG=v1.0.2
+```
