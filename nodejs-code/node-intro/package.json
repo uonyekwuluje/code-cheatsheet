@@ -1,0 +1,29 @@
+{
+  "name": "introapp",
+  "version": "0.0.1",
+  "description": "Hello World App",
+  "main": "app.js",
+  "license": "MIT",
+  "keywords": [
+    "ip",
+    "geo",
+    "country"
+  ],
+  "author": "Augustine",
+  "types": "index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint 'index.js'"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "ioredis": "^5.0.5",
+    "redis": "^3.1.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.16.0",
+    "eslint-plugin-react": "^7.30.0",
+    "nodemon": "^2.0.16"
+  }
+}
