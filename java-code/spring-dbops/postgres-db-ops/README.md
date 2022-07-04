@@ -51,6 +51,10 @@ curl -d "@data-update.json" \
 # ---------------------------- #
 curl -X DELETE -s localhost:8080/api/v1/delete/5 | jq .
 ```
+## Run Command
+```
+./mvnw spring-boot:run
+```
 
 ## Reference Links
 * https://www.onlinetutorialspoint.com/spring-boot/spring-boot-postgresql-db-crud-example.html
