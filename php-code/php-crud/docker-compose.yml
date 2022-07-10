@@ -1,0 +1,56 @@
+---
+version: '3.8'
+
+services:
+  php-apache-environment:
+    container_name: php-apache
+    build:
+       context: ./php
+       dockerfile: Dockerfile
+    depends_on:
+    - mysql-db
+    volumes:
+    - ./php/src:/var/www/html/
+    networks:
+    - appnetwork
+    ports:
+    - 8000:80
+
+
+  phpmyadmin:
+    container_name: phpmyadmin
+    image: phpmyadmin/phpmyadmin
+    ports:
+    - 8080:80
+    restart: always
+    environment:
+       PMA_HOST: mysql-db
+    depends_on:
+    - mysql-db
+    networks:
+    - appnetwork
+
+
+
+  mysql-db:
+    container_name: mysqldb
+    image: mysql:8.0.29
+    restart: always
+    environment:
+       MYSQL_ROOT_PASSWORD: 'password'
+       MYSQL_DATABASE: 'poc_db'
+       MYSQL_USER: 'sqluser'
+       MYSQL_PASSWORD: 'sqluserpassword'
+    volumes:
+    - mysqldata:/var/lib/mysql
+    networks:
+    - appnetwork
+    ports:
+    - 9906:3306
+
+volumes:
+    mysqldata: 
+
+networks:
+    appnetwork:
+      driver: bridge
